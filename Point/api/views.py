@@ -64,6 +64,7 @@ class AdminProfileDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ProfileData(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = AdminUser.objects.all().order_by('-pk')
     serializer_class = ProfileSerializer
 
