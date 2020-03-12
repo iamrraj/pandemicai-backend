@@ -76,8 +76,8 @@ class InfectedView(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
     filter_fields = {
         'start_hour': ["icontains"],
+        'end_hour': ["icontains"],
         'address': ["icontains"],
-        'name': ["icontains"],
         'place_type': ["icontains"],
         'location': ["icontains"],
         'type': ["exact"],

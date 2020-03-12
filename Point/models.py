@@ -74,14 +74,15 @@ class infection(models.Model):
         _("Star Hour"), max_length=100, blank=True, null=True)
     end_hour = models.CharField(
         _("End Hour"), max_length=100, blank=True, null=True)
-    address = models.CharField(max_length=300, blank=True, null=True)
+    address = models.CharField(
+        _("Address"), max_length=300, blank=True, null=True)
     name = models.CharField(_("Name"), max_length=100, blank=True, null=True)
     place_type = models.CharField(
         _("Place Type"), max_length=100, blank=True, null=True)
     location = models.CharField(
         _("Location"), max_length=100, blank=True, null=True)
     type = models.CharField(
-        _("Location"), max_length=100, choices=MY_CHOICES, blank=True, null=True)
+        _("Place Type"), max_length=100, choices=MY_CHOICES, blank=True, null=True)
     route_id = models.CharField(
         _("Route ID"), max_length=100, choices=MY_ROUTE, blank=True, null=True)
 
