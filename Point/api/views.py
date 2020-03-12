@@ -69,6 +69,7 @@ class ProfileData(generics.ListCreateAPIView):
 
 
 class InfectedView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = infection.objects.all().order_by('-pk')
     serializer_class = InfectedSerializer
     filter_backends = [DjangoFilterBackend]
@@ -85,5 +86,6 @@ class InfectedView(generics.ListCreateAPIView):
 
 
 class InfectedDetailView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = infection.objects.all().order_by('-pk')
     serializer_class = InfectedSerializer
