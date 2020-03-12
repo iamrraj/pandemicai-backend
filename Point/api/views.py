@@ -80,7 +80,8 @@ class InfectedView(generics.ListCreateAPIView):
         'name': ["icontains"],
         'place_type': ["icontains"],
         'location': ["icontains"],
-        'type': ["exact"]
+        'type': ["exact"],
+        'date': ['gte', 'lte', 'exact']
 
         # 'locaton': ["contains"]
     }
