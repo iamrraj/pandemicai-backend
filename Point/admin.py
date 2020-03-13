@@ -69,7 +69,7 @@ class TransportAdmin(ImportExportModelAdmin, ExportCsvMixin):
                     'departure_time', 'transport_number', 'transport_mode', 'date']
     search_fields = ('arrival_place', 'departure_place')
     list_display_links = ('date', 'departure_place', 'arrival_place')
-    list_filter = ('transport_mode')
+    list_filter = ('transport_mode',)
 
     actions = ["export_as_csv"]
 
