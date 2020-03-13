@@ -120,4 +120,4 @@ class Transport(models.Model):
                                       max_length=250, blank=True, null=True, choices=TRANSPORT)
 
     def __str__(self):
-        return self.arrival
+        return self.arrival_place
