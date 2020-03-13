@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponse
 from import_export.admin import ImportExportModelAdmin
 import csv
-from .models import AdminUser, infection
+from .models import AdminUser, infection, Transport
 
 from django.conf import settings
 
@@ -29,36 +29,6 @@ class ExportCsvMixin:
 
     export_as_csv.short_description = "Export Selected"
 
-
-# class CsvImportForm(forms.Form):
-#     csv_file = forms.FileField()
-
-
-# class HeroAdmin(admin.ModelAdmin, ExportCsvMixin):
-#     ...
-#     change_list_template = "entities/heroes_changelist.html"
-
-#     def get_urls(self):
-#         urls = super().get_urls()
-#         my_urls = [
-#             ...
-#             path('import-csv/', self.import_csv),
-#         ]
-#         return my_urls + urls
-
-#     def import_csv(self, request):
-#         if request.method == "POST":
-#             csv_file = request.FILES["csv_file"]
-#             reader = csv.reader(csv_file)
-#             # Create Hero objects from passed in data
-#             # ...
-#             self.message_user(request, "Your csv file has been imported")
-#             return redirect("..")
-#         form = CsvImportForm()
-#         payload = {"form": form}
-#         return render(
-#             request, "admin/csv_form.html", payload
-#         )
 
 class VenueAdmin(ImportExportModelAdmin, ExportCsvMixin):
     list_display = ["pk", 'email', 'user', 'location', 'frequency', 'latitude',
@@ -90,6 +60,16 @@ class ProfileAdmin(ImportExportModelAdmin, ExportCsvMixin):
     list_display = ["pk", 'start_hour', 'end_hour', 'location', 'address', 'date', 'place_type', 'latitude',
                     'longitude']
     search_fields = ('location',)
+
+    actions = ["export_as_csv"]
+
+
+class TransportAdmin(ImportExportModelAdmin, ExportCsvMixin):
+    list_display = ["pk", 'departure_place', 'arrival_place', 'arrival_time',
+                    'departure_time', 'transport_number', 'transport_mode', 'date']
+    search_fields = ('arrival_place', 'departure_place')
+    list_display_links = ('date', 'departure_place', 'arrival_place')
+    list_filter = ('transport_mode')
 
     actions = ["export_as_csv"]
 

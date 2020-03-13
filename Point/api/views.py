@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.contrib.auth.models import User
-from ..models import AdminUser, infection
+from ..models import AdminUser, infection,Transport
 from .serializers import *
 from rest_framework import generics
 from django.http import HttpResponseRedirect
@@ -91,3 +91,24 @@ class InfectedDetailView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     queryset = infection.objects.all().order_by('-pk')
     serializer_class = InfectedSerializer
+
+
+
+
+class TransportView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+    queryset = Transport.objects.all().order_by('-pk')
+    serializer_class = TransportSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = {
+        'departure_place': ["icontains"],
+        'arrival_place': ["icontains"],
+        'transport_mode': ["exact"],
+        'date': ['gte', 'lte', 'exact']
+    }
+
+
+class TransportDetailView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+    queryset = Transport.objects.all().order_by('-pk')
+    serializer_class = TransportSerializer

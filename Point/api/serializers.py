@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import AdminUser, infection
+from ..models import AdminUser, infection,Transport
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 
@@ -79,4 +79,10 @@ class InfectedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = infection
+        fields = "__all__"
+
+
+class TransportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transport
         fields = "__all__"

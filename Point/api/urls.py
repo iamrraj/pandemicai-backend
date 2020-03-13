@@ -13,4 +13,7 @@ urlpatterns = [
     path('profile/data/', views.ProfileData.as_view()),
     path('infected/data/', views.InfectedView.as_view()),
     path('infected/data/<int:pk>/', views.InfectedDetailView.as_view()),
+
+    path('transport/data/', views.TransportView.as_view()),
+    path('transport/data/<int:pk>/', views.TransportDetailView.as_view()),
 ]

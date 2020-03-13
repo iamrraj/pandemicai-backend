@@ -27,6 +27,12 @@ MY_CHOICES = (
     ('Route', 'Route'),
 )
 
+TRANSPORT = (
+    ('Bus', 'Bus'),
+    ('Train', 'Train'),
+    ('Flight', 'Flight'),
+)
+
 
 MY_ROUTE = (
     ('Single POI ', 'Single POI'),
@@ -95,3 +101,23 @@ class infection(models.Model):
 
 def __str__(self):
     return self.start_hour
+
+
+class Transport(models.Model):
+    date = models.DateField(_("Date of tavel"),
+                            auto_now=False, auto_now_add=False)
+    arrival_place = models.CharField(_("Transport arrival place"),
+                               max_length=250, blank=True, null=True)
+    departure_place = models.CharField(_("Transport departure place"),
+                                 max_length=250, blank=True, null=True)
+    arrival_time = models.CharField(_("Transport arrival time"),
+                                    max_length=250, blank=True, null=True)
+    departure_time = models.CharField(_("Transport departure time"),
+                                      max_length=250, blank=True, null=True)
+    transport_number = models.CharField(_("Bus train flight number"),
+                                        max_length=250, blank=True, null=True)
+    transport_mode = models.CharField(_("Mode of transport "),
+                                      max_length=250, blank=True, null=True, choices=TRANSPORT)
+
+    def __str__(self):
+        return self.arrival
