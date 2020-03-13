@@ -65,7 +65,7 @@ odfpy==1.4.1
 xlrd==1.2.0 
 PyYAML==5.3
 openpyxl==3.0.3
-ImportExportModelAdmin==2.0.2 
+ImportExportModelAdmin==2.0.1
 tablib==1.1.0
 wrapt==1.11.1
 psycopg2==2.7.2
