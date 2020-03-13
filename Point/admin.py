@@ -76,3 +76,4 @@ class TransportAdmin(ImportExportModelAdmin, ExportCsvMixin):
 
 admin.site.register(AdminUser, VenueAdmin)
 admin.site.register(infection, ProfileAdmin)
+admin.site.register(Transport, TransportAdmin)
