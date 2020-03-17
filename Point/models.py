@@ -97,7 +97,7 @@ class infection(models.Model):
 
     longitude = models.DecimalField(
         max_digits=10, decimal_places=7, null=True, blank=True)
-    info = models.TextField(_("Info about coronavirus"),null=True, blank=True )
+    info = models.TextField(_("Info about coronavirus"), null=True, blank=True)
 
 
 def __str__(self):
@@ -107,10 +107,14 @@ def __str__(self):
 class Transport(models.Model):
     date = models.DateField(_("Date of tavel"),
                             auto_now=False, auto_now_add=False)
-    arrival_place = models.CharField(_("Transport arrival place"),
-                               max_length=250, blank=True, null=True)
-    departure_place = models.CharField(_("Transport departure place"),
-                                 max_length=250, blank=True, null=True)
+    arrival_country = models.CharField(_("Transport arrival Country"),
+                                       max_length=250, blank=True, null=True)
+    departure_country = models.CharField(_("Transport departure Country"),
+                                         max_length=250, blank=True, null=True)
+    arrival_place = models.CharField(_("Transport arrival city"),
+                                     max_length=250, blank=True, null=True)
+    departure_place = models.CharField(_("Transport departure city"),
+                                       max_length=250, blank=True, null=True)
     arrival_time = models.CharField(_("Transport arrival time"),
                                     max_length=250, blank=True, null=True)
     departure_time = models.CharField(_("Transport departure time"),
