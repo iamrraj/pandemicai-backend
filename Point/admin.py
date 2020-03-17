@@ -58,8 +58,8 @@ class VenueAdmin(ImportExportModelAdmin, ExportCsvMixin):
 
 class ProfileAdmin(ImportExportModelAdmin, ExportCsvMixin):
     list_display = ["pk", 'start_hour', 'end_hour', 'location', 'address', 'date', 'place_type', 'latitude',
-                    'longitude']
-    search_fields = ('location',)
+                    'longitude', 'info']
+    search_fields = ('location', 'address', 'date')
 
     actions = ["export_as_csv"]
 

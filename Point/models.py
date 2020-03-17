@@ -97,6 +97,7 @@ class infection(models.Model):
 
     longitude = models.DecimalField(
         max_digits=10, decimal_places=7, null=True, blank=True)
+    info = models.TextField(_("Info about coronavirus"),null=True, blank=True )
 
 
 def __str__(self):
