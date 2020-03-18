@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.contrib.auth.models import User
-from ..models import AdminUser, infection, Transport
+from ..models import infection, Transport
 from .serializers import *
 from rest_framework import generics
 from django.http import HttpResponseRedirect
@@ -43,7 +43,7 @@ from rest_framework.permissions import IsAdminUser
 #         user_instance = request.user
 #         data = {'is_active': user_instance.is_active,
 #                 'is_superuser': user_instance.is_superuser}
-return Response(data, status=status.HTTP_200_OK)
+# return Response(data, status=status.HTTP_200_OK)
 
 
 # class AdminProfileView(generics.ListCreateAPIView):
