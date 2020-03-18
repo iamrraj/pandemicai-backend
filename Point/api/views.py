@@ -12,61 +12,55 @@ from rest_framework import filters
 from rest_framework.permissions import IsAdminUser
 
 
-class UserProfileView(generics.RetrieveUpdateAPIView):
-    serializer_class = AdminProfileSerializer
-    queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
-    # filter_backends = [DjangoFilterBackend]
+# class UserProfileView(generics.RetrieveUpdateAPIView):
+#     serializer_class = AdminProfileSerializer
+#     queryset = User.objects.all()
+#     permission_classes = (IsAuthenticated,)
+#     # filter_backends = [DjangoFilterBackend]
 
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.request.user
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
+#     def retrieve(self, request, *args, **kwargs):
+#         instance = self.request.user
+#         serializer = self.get_serializer(instance)
+#         return Response(serializer.data)
 
-    def update(self, request, *args, **kwargs):
-        instance = request.user
-        # Disabling The Updation Of Username
-        request.data['username'] = instance.username
-        serializer = AdminProfileSerializer(instance, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-
-
-class UserStatusView(generics.RetrieveAPIView):
-    """View To Return The User Status (Active/Superuser)"""
-
-    permission_classes = (IsAuthenticated,)
-   # authentication_classes = (JSONWebTokenAuthentication,)
-
-    def get(self, request, *Args, **kwargs):
-        user_instance = request.user
-        data = {'is_active': user_instance.is_active,
-                'is_superuser': user_instance.is_superuser}
-        return Response(data, status=status.HTTP_200_OK)
+#     def update(self, request, *args, **kwargs):
+#         instance = request.user
+#         # Disabling The Updation Of Username
+#         request.data['username'] = instance.username
+#         serializer = AdminProfileSerializer(instance, data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data)
 
 
-class AdminProfileView(generics.ListCreateAPIView):
-    permission_classes = (IsAdminUser,)
-    queryset = User.objects.all().order_by('-pk')
-    serializer_class = AdminProfileSerializer
-    filter_backends = [DjangoFilterBackend]
-    filter_fields = {
-        'first_name': ["contains"],
-        # 'locaton': ["contains"]
-    }
+# class UserStatusView(generics.RetrieveAPIView):
+#     """View To Return The User Status (Active/Superuser)"""
+
+#     permission_classes = (IsAuthenticated,)
+#    # authentication_classes = (JSONWebTokenAuthentication,)
+
+#     def get(self, request, *Args, **kwargs):
+#         user_instance = request.user
+#         data = {'is_active': user_instance.is_active,
+#                 'is_superuser': user_instance.is_superuser}
+return Response(data, status=status.HTTP_200_OK)
 
 
-class AdminProfileDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAdminUser,)
-    queryset = User.objects.all().order_by('-pk')
-    serializer_class = AdminProfileSerializer
+# class AdminProfileView(generics.ListCreateAPIView):
+#     permission_classes = (IsAdminUser,)
+#     queryset = User.objects.all().order_by('-pk')
+#     serializer_class = AdminProfileSerializer
+#     filter_backends = [DjangoFilterBackend]
+#     filter_fields = {
+#         'first_name': ["contains"],
+#         # 'locaton': ["contains"]
+#     }
 
 
-class ProfileData(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
-    queryset = AdminUser.objects.all().order_by('-pk')
-    serializer_class = ProfileSerializer
+# class AdminProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+#     permission_classes = (IsAdminUser,)
+#     queryset = User.objects.all().order_by('-pk')
+#     serializer_class = AdminProfileSerializer
 
 
 class InfectedView(generics.ListCreateAPIView):

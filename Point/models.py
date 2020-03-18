@@ -40,33 +40,33 @@ MY_ROUTE = (
 )
 
 
-class AdminUser(models.Model):
-    user = models.OneToOneField(
-        User, models.CASCADE)
-    email = models.CharField(
-        _("location and region"), max_length=250, blank=True, null=True,)
-    first_name = models.CharField(
-        _("First Name"), max_length=250, blank=True, null=True)
-    last_name = models.CharField(
-        _("Last Name"), max_length=250, blank=True, null=True)
+# class AdminUser(models.Model):
+#     user = models.OneToOneField(
+#         User, models.CASCADE)
+#     email = models.CharField(
+#         _("location and region"), max_length=250, blank=True, null=True,)
+#     first_name = models.CharField(
+#         _("First Name"), max_length=250, blank=True, null=True)
+#     last_name = models.CharField(
+#         _("Last Name"), max_length=250, blank=True, null=True)
 
-    location = models.CharField(
-        _("Email of the user"), max_length=250, blank=True, null=True)
-    frequency = models.CharField(
-        _("frequency"), max_length=250, blank=True, null=True)
+#     location = models.CharField(
+#         _("Email of the user"), max_length=250, blank=True, null=True)
+#     frequency = models.CharField(
+#         _("frequency"), max_length=250, blank=True, null=True)
 
-    latitude = models.DecimalField(
-        max_digits=9, decimal_places=6, null=True, blank=True)
+#     latitude = models.DecimalField(
+#         max_digits=9, decimal_places=6, null=True, blank=True)
 
-    longitude = models.DecimalField(
-        max_digits=9, decimal_places=6, null=True, blank=True)
-    # position = GeopositionField()
+#     longitude = models.DecimalField(
+#         max_digits=9, decimal_places=6, null=True, blank=True)
+#     # position = GeopositionField()
 
-    @receiver(post_save, sender=User)
-    def create_profile(sender, instance, created, *args, **kwargs):
-        if created:
-            user_profile = AdminUser(user=instance)
-            user_profile.save()
+#     @receiver(post_save, sender=User)
+#     def create_profile(sender, instance, created, *args, **kwargs):
+#         if created:
+#             user_profile = AdminUser(user=instance)
+#             user_profile.save()
 
 
 class infection(models.Model):

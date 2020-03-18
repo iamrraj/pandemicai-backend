@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import AdminUser, infection,Transport
+from ..models import AdminUser, infection, Transport
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 
@@ -32,39 +32,6 @@ class AdminProfileSerializer(serializers.ModelSerializer):
         """This always creates a Profile if the User is missing one"""
 
         AdminUser.objects.update_or_create(user=user, defaults=profile_data)
-
-
-class ProfileSerializer(serializers.ModelSerializer):
-
-    # email = serializers.SerializerMethodField()
-    # first_name = serializers.SerializerMethodField()
-    # last_name = serializers.SerializerMethodField()
-
-    class Meta:
-        model = AdminUser
-        fields = "__all__"
-
-    # def get_email(self, obj):
-    #     return User.obj.email
-
-    # def get_first_name(self, obj):
-    #     return obj.user.first_name
-
-    # def get_last_name(self, obj):
-    #     return obj.user.last_name
-
-    # def update(self, instance, validated_data):
-    #     """Overwriting The Default update Method For This Serializer
-    #     To Update User And UserProfile At A Single Endpoint"""
-
-    #     profile_data = validated_data.pop('first_name', None)
-    #     self.update_or_create_profile(instance, profile_data)
-    #     return super(ProfileSerializer, self).update(instance, validated_data)
-
-    # def update_or_create_profile(self, user, profile_data):
-    #     """This always creates a Profile if the User is missing one"""
-
-    #     AdminUser.objects.update_or_create(user=user, defaults=profile_data)
 
 
 class UserStatus(serializers.ModelSerializer):
