@@ -75,6 +75,6 @@ class TransportAdmin(ImportExportModelAdmin, ExportCsvMixin):
     actions = ["export_as_csv"]
 
 
-admin.site.register(AdminUser, VenueAdmin)
+# admin.site.register(AdminUser, VenueAdmin)
 admin.site.register(infection, ProfileAdmin)
 admin.site.register(Transport, TransportAdmin)

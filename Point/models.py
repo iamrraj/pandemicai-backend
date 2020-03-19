@@ -121,6 +121,9 @@ class Transport(models.Model):
                                       max_length=250, blank=True, null=True)
     transport_number = models.CharField(_("Bus train flight number"),
                                         max_length=250, blank=True, null=True)
+    company_name = models.CharField(
+        _("Flight company name"), blank=True, null=True, max_length=250)
+
     transport_mode = models.CharField(_("Mode of transport "),
                                       max_length=250, blank=True, null=True, choices=TRANSPORT)
 
