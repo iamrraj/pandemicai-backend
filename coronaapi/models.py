@@ -31,7 +31,7 @@ class CoronaComorbidity(models.Model):
 
 class CoronaAge(models.Model):
     byage = models.ForeignKey(
-        CoronaComorbidity, related_name='byAge', blank=True, on_delete=models.CASCADE)
+        CoronaComorbidity, related_name='byAge', blank=True, null=True, on_delete=models.CASCADE)
     age = models.CharField(
         _("Between age of people died"), blank=True, null=True, max_length=250)
     rate = models.CharField(
@@ -43,7 +43,7 @@ class CoronaAge(models.Model):
 
 class CoronaSex(models.Model):
     bysex = models.ForeignKey(
-        CoronaComorbidity, related_name='bySex', blank=True, on_delete=models.CASCADE)
+        CoronaComorbidity, related_name='bySex', blank=True, null=True, on_delete=models.CASCADE)
     sex = models.CharField(
         _("Male or female"), blank=True, null=True, max_length=250)
     rate = models.CharField(

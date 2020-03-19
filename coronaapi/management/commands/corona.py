@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 import requests
-from demo.models import CoronaAge, CoronaSex, CoronaComorbidity
+from coronaapi.models import CoronaAge, CoronaSex, CoronaComorbidity
 
 
 class Command(BaseCommand):
@@ -10,6 +10,22 @@ class Command(BaseCommand):
         titles = r.json()
         print(titles)
 
+
+# corona_ages = CoronaAge.objects.all()
+# new_ages = []
+# existing_ages = []
+# for title in titles['byAge'] or []:
+#     entry = corona_ages.filter(age=title['age']).first():
+#     if not entry:
+#         new_data = CoronaAge(**title)
+#         new_ages.append(new_data)
+#     else:
+#         entry['age'] = title['age']
+#         entry['rate'] = title['rate']
+#         existing_ages.append(new_date)
+
+# CoronaAge.objects.bulk_create(new_ages)
+# CoronaAge.objects.bulk_update(existing_ages)
 # For between age.
         for agee in titles['byAge'] or []:
             CoronaAge.objects.update_or_create(

@@ -16,9 +16,6 @@ class SexSerializer(serializers.ModelSerializer):
 
 
 class CoronaComorbiditySerializer(serializers.ModelSerializer):
-    byAge = AgeSerializer(read_only=True, many=True)
-    bySex = SexSerializer(read_only=True, many=True)
-
     class Meta:
-        model = CoronaSex
+        model = CoronaComorbidity
         exclude = ['id']

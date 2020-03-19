@@ -37,6 +37,7 @@ urlpatterns = [
     path('api/1/oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 
     path('api/1/', include('Point.api.urls')),
+    path('api/1/', include('coronaapi.api.urls')),
 
 
     url(r'^swagger(?P<format>\.json|\.yaml)$',
