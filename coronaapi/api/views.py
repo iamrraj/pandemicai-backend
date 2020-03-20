@@ -2,7 +2,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework import generics
 from . import serializers
 from rest_framework import filters
-from ..models import CoronaAge, CoronaComorbidity, CoronaSex
+from ..models import CoronaAge, CoronaComorbidity, CoronaSex, Area, Hackathon
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework import viewsets
@@ -20,6 +20,30 @@ from datetime import datetime, timedelta
 class IsSuperUser(IsAdminUser):
     def has_permission(self, request, view):
         return bool(request.user and request.user.is_superuser)
+
+
+class Country(ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    queryset = Area.objects.all().order_by('-pk')
+    serializer_class = serializers.AreaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = {
+        'country': ["icontains"],
+        'displayName': ["icontains"],
+        # 'locaton': ["contains"]
+    }
+
+
+class CountryArea(ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    queryset = Hackathon.objects.all().order_by('-pk')
+    serializer_class = serializers.HackathonSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = {
+        'country': ["icontains"],
+        'country_code': ["icontains"],
+        'province': ["icontains"],
+    }
 
 
 class DeathRate(ListAPIView):

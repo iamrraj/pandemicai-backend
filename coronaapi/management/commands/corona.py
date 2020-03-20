@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 import requests
-from coronaapi.models import CoronaAge, CoronaSex, CoronaComorbidity, Hackathon
+from coronaapi.models import CoronaAge, CoronaSex, CoronaComorbidity, Hackathon, Area, Total
 
 
 class Command(BaseCommand):
@@ -75,3 +75,34 @@ class Command(BaseCommand):
                 defaults={
                     'country': hack['country'], 'country_code': hack['country_code']},
             )
+
+
+# Only for country and proviences  microsoftdata
+        url1 = 'https://www.bing.com/covid/data?IG=77591E68DA4B43C5B2656E9D33E5AAB8'
+        r = requests.get(url1)
+        corona = r.json()
+
+        for micro in corona['areas'] or []:
+            Area.objects.update_or_create(
+                lat=micro['lat'],
+                long=micro['long'],
+                country=micro['country'],
+                displayName=micro['displayName'],
+                main_id=micro['id'],
+                totalConfirmed=micro['totalConfirmed'],
+                totalDeaths=micro['totalDeaths'],
+                totalRecovered=micro['totalRecovered'],
+                defaults={
+                    'country': micro['country'], 'displayName': micro['displayName'], 'main_id': micro['id']},
+            )
+
+
+# total Cases overall
+        # for microo in corona or []:
+        #     Total.objects.update_or_create(
+        #         totalConfirmed=microo['totalConfirmed'],
+        #         totalDeaths=microo['totalDeaths'],
+        #         totalRecovered=microo['totalRecovered'],
+        #         defaults={
+        #             'totalConfirmed': microo['totalConfirmed'], 'totalDeaths': microo['totalDeaths'], 'totalRecovered': microo['totalRecovered']},
+        #     )

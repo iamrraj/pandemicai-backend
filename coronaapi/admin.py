@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.http import HttpResponse
 from import_export.admin import ImportExportModelAdmin
 import csv
-from .models import CoronaAge, CoronaComorbidity, CoronaSex
+from .models import CoronaAge, CoronaComorbidity, CoronaSex, Hackathon, Area
 
 from django.conf import settings
 
@@ -52,6 +52,26 @@ class ComorbidityAdmin(ImportExportModelAdmin, ExportCsvMixin):
     actions = ["export_as_csv"]
 
 
+class DataAdmin(ImportExportModelAdmin, ExportCsvMixin):
+    list_display = ["pk",  'country', 'totalConfirmed',
+                    'totalDeaths', 'totalRecovered', 'province', 'lat', 'long']
+    list_display_links = ("pk", 'country', 'totalConfirmed', 'province')
+    search_fields = ('country', 'province')
+
+    actions = ["export_as_csv"]
+
+
+class AreaAdmin(ImportExportModelAdmin, ExportCsvMixin):
+    list_display = ["pk",  'country', 'totalConfirmed',
+                    'totalDeaths', 'totalRecovered', 'displayName', 'lat', 'long']
+    list_display_links = ("pk", 'country', 'totalConfirmed', 'displayName')
+    search_fields = ('country', 'displayName')
+
+    actions = ["export_as_csv"]
+
+
 admin.site.register(CoronaAge, AgeAdmin)
+admin.site.register(Hackathon, DataAdmin)
+admin.site.register(Area, AreaAdmin)
 admin.site.register(CoronaSex, SexAdmin)
 admin.site.register(CoronaComorbidity, ComorbidityAdmin)

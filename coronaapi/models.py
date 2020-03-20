@@ -76,8 +76,6 @@ class Hackathon(models.Model):
         return self.country
 
 
-
-
 class Area(models.Model):
     main_id = models.CharField(
         _("Parent id used for cities"), blank=True, null=True, max_length=250)
@@ -104,25 +102,10 @@ class Area(models.Model):
         return self.displayName
 
 
-class Cities(models.Model):
-    parent_id = models.CharField(
-        _("Parent id used for cities"), blank=True, null=True, max_length=250)
-    displayName = models.CharField(
-        _("Display Name on web"), blank=True, null=True, max_length=250)
+class Total(models.Model):
     totalConfirmed = models.IntegerField(
         _("Total confirm cases in country"), blank=True, null=True)
     totalDeaths = models.IntegerField(
         _("Total death cases in country"), blank=True, null=True)
     totalRecovered = models.IntegerField(
         _("Total recovered cases in country"), blank=True, null=True)
-    lastUpdated = models.CharField(
-        _("Last update date time"), blank=True, null=True, max_length=250)
-    lastUpdated = models.CharField(
-        _("Last update date time"), blank=True, null=True, max_length=250)
-    lat = models.DecimalField(_("Latitude of country"),
-                              max_digits=10, decimal_places=7, null=True, blank=True)
-    long = models.DecimalField(_("Longitude of country"),
-                               max_digits=10, decimal_places=7, null=True, blank=True)
-
-    def __str__(self):
-        return self.displayName
