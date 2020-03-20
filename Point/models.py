@@ -86,7 +86,9 @@ class infection(models.Model):
     place_type = models.CharField(
         _("Place Type"), max_length=100, blank=True, null=True)
     location = models.CharField(
-        _("Location"), max_length=100, blank=True, null=True)
+        _("City name or state"), max_length=100, blank=True, null=True)
+    country = models.CharField(
+        _("country"), max_length=100, blank=True, null=True)
     type = models.CharField(
         _("Place Type"), max_length=100, choices=MY_CHOICES, blank=True, null=True)
     route_id = models.CharField(
@@ -128,4 +130,4 @@ class Transport(models.Model):
                                       max_length=250, blank=True, null=True, choices=TRANSPORT)
 
     def __str__(self):
-        return self.arrival_place
+        return self.transport_mode
