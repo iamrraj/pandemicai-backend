@@ -75,6 +75,7 @@ class InfectedView(generics.ListCreateAPIView):
         'place_type': ["icontains"],
         'location': ["icontains"],
         'type': ["exact"],
+        "country": ["icontains"],
         'date': ['gte', 'lte', 'exact']
 
         # 'locaton': ["contains"]
