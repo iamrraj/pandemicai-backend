@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 import requests
-from coronaapi.models import CoronaAge, CoronaSex, CoronaComorbidity
+from coronaapi.models import CoronaAge, CoronaSex, CoronaComorbidity, Hackathon
 
 
 class Command(BaseCommand):
@@ -55,3 +55,23 @@ class Command(BaseCommand):
             )
 
         # context = {'titles': CoronaComorbidity.objects.all()}
+
+
+# Only for country and proviences
+        url1 = 'http://covid19api.xapix.io/v2/locations'
+        r = requests.get(url1)
+        corona = r.json()
+
+        for hack in corona['locations'] or []:
+            Hackathon.objects.update_or_create(
+                lat=hack['coordinates']['latitude'],
+                long=hack['coordinates']['longitude'],
+                country=hack['country'],
+                country_code=hack['country_code'],
+                totalConfirmed=hack['latest']['confirmed'],
+                totalDeaths=hack['latest']['deaths'],
+                totalRecovered=hack['latest']['recovered'],
+                province=hack['province'],
+                defaults={
+                    'country': hack['country'], 'country_code': hack['country_code']},
+            )

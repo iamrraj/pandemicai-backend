@@ -53,6 +53,31 @@ class CoronaSex(models.Model):
         return self.sex
 
 
+class Hackathon(models.Model):
+
+    lat = models.DecimalField(_("Latitude of country"),
+                              max_digits=10, decimal_places=7, null=True, blank=True)
+    long = models.DecimalField(_("Longitude of country"),
+                               max_digits=10, decimal_places=7, null=True, blank=True)
+    country = models.CharField(
+        _("Country name"), blank=True, null=True, max_length=250)
+    country_code = models.CharField(
+        _("Country code name"), blank=True, null=True, max_length=250)
+    totalConfirmed = models.IntegerField(
+        _("Total confirm cases in country"), blank=True, null=True)
+    totalDeaths = models.IntegerField(
+        _("Total death cases in country"), blank=True, null=True)
+    totalRecovered = models.IntegerField(
+        _("Total recovered cases in country"), blank=True, null=True)
+    province = models.CharField(
+        _("Country state name"), blank=True, null=True, max_length=250)
+
+    def __str__(self):
+        return self.country
+
+
+
+
 class Area(models.Model):
     main_id = models.CharField(
         _("Parent id used for cities"), blank=True, null=True, max_length=250)
