@@ -30,7 +30,7 @@ django-taggit-labels==0.6.0
 django-tinymce==2.8.0
 django-tinymce4-lite==1.7.5
 django-widget-tweaks==1.4.3
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 django-richtextfield==1.4.0
 djangorestframework-jwt==1.11.0
 djangorestframework-xml==1.4.0
